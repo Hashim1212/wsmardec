@@ -7,6 +7,26 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+                                            <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
 	<div class="formwrapper ep_wrap">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -25,32 +45,35 @@
 						<h3>Edit Party</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
-						<form action="" class="modalform" method="POST" enctype="multipart/form-party">
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
 							{% csrf_token %}
 							<div class="modalform__group">
 								<label for="agency">Agency:</label>
-								<input type="text" id="agency" name="agency" value="{{party.agency}}" required />
+								<input type="text" id="agency" name="agency" value="{{party.agency}}" required placeholder="Enter Agency" />
 							</div>
 							<div class="modalform__group">
 								<label for="represented_by">Represented By:</label>
-								<input type="text" id="represented_by" name="represented_by" value="{{party.represented_by}}" required />
+								<input type="text" id="represented_by" name="represented_by" value="{{party.represented_by}}" required placeholder="Enter Name" />
 							</div>
 							<div class="modalform__group">
 								<label for="position">Position:</label>
-								<input type="text" id="position" name="position" value="{{party.position}}" required />
+								<input type="text" id="position" name="position" value="{{party.position}}" required placeholder="Enter Position" />
 							</div>
 							<div class="modalform__group">
 								<label for="address">Address:</label>
-								<input type="text" id="address" name="address" value="{{party.address}}" required />
+								<input type="text" id="address" name="address" value="{{party.address}}" required placeholder="Enter Address" />
 							</div>
 							<div class="modalform__group">
 								<label for="referred_to_as">Referred To As:</label>
-								<input type="text" id="referred_to_as" name="referred_to_as" value="{{party.referred_to_as}}" required />
+								<input type="text" id="referred_to_as" name="referred_to_as" value="{{party.referred_to_as}}" required placeholder="Enter Reference Name" />
 							</div>
 							<div class="modalform__action">
 								<a class="modalbtn modalbtn--dark" href="{% url 'moa' party.moau.moau_no %}">Cancel</a>
@@ -64,3 +87,4 @@
 	</div>
 </main>
 {% endblock content %}
+

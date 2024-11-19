@@ -5,7 +5,6 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<title>WESMAARRDEC</title>
 
 		<link rel="icon" href="{% static 'images/WESMAARRDEC.png' %}" type="image/x-icon" />
@@ -17,25 +16,69 @@
 			<div class="bg"></div>
 			<div class="bg bg2"></div>
 			<div class="bg bg3"></div>
-	
+
 			<div class="card">
 				<div class="auth_header text-center">
-					<a href="{% url 'home' %}"><img style="height: 25%; width: 25%" src="{% static 'images/WESMAARRDEC.png' %}" alt="WESMAARRDEC Logo" /></a>
+					<a href="{% url 'home' %}">
+						<img style="height: 25%; width: 25%" src="{% static 'images/WESMAARRDEC.png' %}" alt="WESMAARRDEC Logo" />
+					</a>
 					<h3>WESMAARRDEC</h3>
 				</div>
 
-				{% if messages %} {% for message in messages %}
-				<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-				{% endfor %} {% endif %}
+				<!-- Display messages -->
+				{% if messages %}
+    <div class="alert-messages">
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <p class="alert error">{{ message }}</p>
+            {% elif message.tags == 'success' %}
+                <p class="alert success">{{ message }}</p>
+            {% else %}
+                <p class="alert">{{ message }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- JavaScript to auto-hide the alert messages -->
+    <script>
+        // Wait for the DOM to be fully loaded before executing the script
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select all messages
+            const alerts = document.querySelectorAll('.alert-messages .alert');
+
+            // Loop through each alert and hide it after 2 seconds
+            alerts.forEach(function(alert) {
+                setTimeout(function() {
+                    alert.style.transition = 'opacity 1s ease-out'; // Smooth transition
+                    alert.style.opacity = 0; // Fade out the message
+                }, 2000); // 2 seconds delay
+            });
+        });
+    </script>
+
+    <style>
+        .alert-messages .alert {
+            opacity: 1;
+            transition: opacity 1s ease-out; /* Initial smooth fade transition */
+        }
+
+        .alert-messages .alert.hidden {
+            opacity: 0;
+        }
+    </style>
+{% endif %}
+
+
 				<form action="" method="POST" autocomplete="off" class="form auth_form">
 					{% csrf_token %}
+
 					<div class="form_field">
-						<label for="">Username</label>
-						<input class="input input-text" id="username" type="text" name="username" value="{{data.username}}" />
+						<label for="username">Username</label>
+						<input class="input input-text" id="username" type="text" name="username" value="{{ data.username }}" />
 					</div>
 
 					<div class="form_field">
-						<label for="">Password</label>
+						<label for="password">Password</label>
 						<input class="input input-password" id="password" type="password" name="password" />
 					</div>
 

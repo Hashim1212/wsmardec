@@ -17,6 +17,39 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+                        <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+                        <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
 	<div class="formwrapper event_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -35,13 +68,16 @@
 						<h3>Edit Event</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
 
-						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 							{% csrf_token %}
 							<div class="modalform__group">
 								<label for="event_id">Event ID:</label>
@@ -107,5 +143,37 @@
 			format: "yyyy-mm-dd",
 		});
 	});
+
+	function validateForm() {
+		const fields = [
+			document.getElementById("event_id"),
+			document.getElementById("event_name"),
+			document.getElementById("event_agenda"),
+			document.getElementById("id_event_date"),
+			document.getElementById("event_venue"),
+			document.getElementById("no_participants"),
+			document.getElementById("impl_agency"),
+		];
+		let isValid = true;
+
+		fields.forEach(field => {
+			if (!field.value.trim()) {
+				isValid = false;
+				field.style.borderColor = "red"; // Highlight empty fields
+			} else {
+				field.style.borderColor = ""; // Reset border color
+			}
+		});
+
+		// Check if date is valid
+		const eventDate = document.getElementById("id_event_date").value;
+		if (isNaN(Date.parse(eventDate))) {
+			isValid = false;
+			alert("Event Date must be a valid date.");
+		}
+
+		return isValid; // Allow form submission if valid
+	}
 </script>
-{% endblock js %} {% endblock content %}
+{% endblock js %}
+{% endblock content %}

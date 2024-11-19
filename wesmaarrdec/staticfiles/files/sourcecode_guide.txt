@@ -1,0 +1,33 @@
+log in
+sign up
+user -
+	Search property
+	book property
+	Review property
+	messaging
+landlord - 
+	accept booking
+	send payment request
+	add property
+	messaging
+admin - 
+accept
+
+
+
+main module to be tested
+search property
+messaging 
+bookings
+reviews
+
+none --
+filter  and search
+user profile
+notification
+--
+
+
+use cases
+ss
+chapter 6 chapter 7

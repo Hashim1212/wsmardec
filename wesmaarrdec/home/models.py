@@ -52,6 +52,10 @@ class Memorandum(models.Model):
     created_by = models.CharField(max_length=100, null=True, blank=True)
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
+    represented_by = models.CharField(null=True, max_length=255)
+    referred_to_as = models.CharField(null=True, max_length=255)
+    address = models.TextField(null=True, blank=True)
+
 
     class Meta:
         ordering = ['-created_at']
@@ -93,10 +97,10 @@ class CommLetter(models.Model):
     created_by = models.CharField(max_length=100, null=True, blank=True)
     modified_at = models.DateTimeField(auto_now=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
-    
+
     class Meta:
         ordering = ['-created_at']
-    
+
     def __str__(self):
         return self.letter_no
 
@@ -121,7 +125,7 @@ class Moau(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        
+
     def __str__(self):
         return self.moau_no
 
@@ -140,7 +144,7 @@ class MoauParties(models.Model):
 
     class Meta:
         ordering = ['created_at']
-        
+
     def __str__(self):
         return self.moau
 
@@ -156,7 +160,7 @@ class MoauSignatories(models.Model):
 
     class Meta:
         ordering = ['created_at']
-        
+
     def __str__(self):
         return self.moau
 
@@ -177,7 +181,7 @@ class Event(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        
+
     def __str__(self):
         return self.event_name
 
@@ -192,6 +196,6 @@ class EventAgencies(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        
+
     def __str__(self):
         return self.event

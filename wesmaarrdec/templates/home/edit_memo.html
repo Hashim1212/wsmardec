@@ -17,6 +17,46 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+    <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
 	<div class="formwrapper memo_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -36,71 +76,71 @@
 					</div>
 					<div class="layout__body">
 						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
 						{% else %}
 						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
 						{% endif %} {% endfor %} {% endif %}
 
 						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
-							{% csrf_token %}
-							<div class="modalform__group">
-								<label for="memo_no">Memo No:</label>
-								<input type="text" id="memo_no" name="memo_no" value="{{memo.memo_no}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_date">Memo Date:</label>
-								{{form.memo_date}}
-							</div>
-							<div class="modalform__group">
-								<label for="memo_file">Memo File:</label>
-								{{form.memo_file}}
-							</div>
-							<div class="modalform__group">
-								<label for="memo_subject">Subject:</label>
-								<input type="text" id="memo_subject" name="memo_subject" value="{{memo.memo_subject}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_content">Content:</label>
-								<textarea name="memo_content" cols="40" rows="10" id="memo_content">{{memo.memo_content}}</textarea>
-							</div>
-							<div class="modalform__group">
-								<label for="memo_to">Memo To:</label>
-								<input type="text" id="memo_to" name="memo_to" value="{{memo.memo_to}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_to_pos">Memo To Pos:</label>
-								<input type="text" id="memo_to_pos" name="memo_to_pos" value="{{memo.memo_to_pos}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_thru">Memo Thru:</label>
-								<input type="text" id="memo_thru" name="memo_thru" value="{{memo.memo_thru}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_thru_pos">Memo Thru Pos:</label>
-								<input type="text" id="memo_thru_pos" name="memo_thru_pos" value="{{memo.memo_thru_pos}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_from">Memo From:</label>
-								<input type="text" id="memo_from" name="memo_from" value="{{memo.memo_from}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_from_pos">Memo From Pos:</label>
-								<input type="text" id="memo_from_pos" name="memo_from_pos" value="{{memo.memo_from_pos}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_recomm_by">Recommended By:</label>
-								<input type="text" id="memo_recomm_by" name="memo_recomm_by" value="{{memo.memo_recomm_by}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="memo_approved_by">Approved By:</label>
-								<input type="text" id="memo_approved_by" name="memo_approved_by" value="{{memo.memo_approved_by}}" />
-							</div>
+    {% csrf_token %}
+    <div class="modalform__group">
+        <label for="memo_no">Memo No:</label>
+        <input type="text" id="memo_no" name="memo_no" value="{{memo.memo_no}}" required placeholder="Enter Memo No" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_date">Memo Date:</label>
+        <input type="text" id="id_memo_date" name="memo_date" value="{{memo.memo_date}}" required placeholder="YYYY-MM-DD" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_file">Memo File:</label>
+        {{form.memo_file}}
+    </div>
+    <div class="modalform__group">
+        <label for="memo_subject">Subject:</label>
+        <input type="text" id="memo_subject" name="memo_subject" value="{{memo.memo_subject}}" required placeholder="Enter Subject" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_content">Content:</label>
+        <textarea name="memo_content" cols="40" rows="10" id="memo_content" required placeholder="Enter Memo Content">{{memo.memo_content}}</textarea>
+    </div>
+    <div class="modalform__group">
+        <label for="memo_to">Memo To:</label>
+        <input type="text" id="memo_to" name="memo_to" value="{{memo.memo_to}}" required placeholder="Enter Recipient's Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_to_pos">Memo To Pos:</label>
+        <input type="text" id="memo_to_pos" name="memo_to_pos" value="{{memo.memo_to_pos}}" required placeholder="Enter Recipient's Position" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_thru">Memo Thru:</label>
+        <input type="text" id="memo_thru" name="memo_thru" value="{{memo.memo_thru}}" required placeholder="Enter Thru Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_thru_pos">Memo Thru Pos:</label>
+        <input type="text" id="memo_thru_pos" name="memo_thru_pos" value="{{memo.memo_thru_pos}}" required placeholder="Enter Thru Position" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_from">Memo From:</label>
+        <input type="text" id="memo_from" name="memo_from" value="{{memo.memo_from}}" required placeholder="Enter Sender's Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_from_pos">Memo From Pos:</label>
+        <input type="text" id="memo_from_pos" name="memo_from_pos" value="{{memo.memo_from_pos}}" required placeholder="Enter Sender's Position" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_recomm_by">Recommended By:</label>
+        <input type="text" id="memo_recomm_by" name="memo_recomm_by" value="{{memo.memo_recomm_by}}" required placeholder="Enter Recommended By" />
+    </div>
+    <div class="modalform__group">
+        <label for="memo_approved_by">Approved By:</label>
+        <input type="text" id="memo_approved_by" name="memo_approved_by" value="{{memo.memo_approved_by}}" required placeholder="Enter Approved By" />
+    </div>
 
-							<div class="modalform__action">
-								<a class="modalbtn modalbtn--dark" href="{% url 'memorandums' %}">Cancel</a>
-								<button class="modalbtn modalbtn--main" type="submit">Update Memo</button>
-							</div>
-						</form>
+    <div class="modalform__action">
+        <a class="modalbtn modalbtn--dark" href="{% url 'memorandums' %}">Cancel</a>
+        <button class="modalbtn modalbtn--main" type="submit">Update Memo</button>
+    </div>
+</form>
+
 					</div>
 				</div>
 			</div>

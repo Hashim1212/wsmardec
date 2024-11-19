@@ -17,6 +17,46 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+<br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
 	<div class="formwrapper memo_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -35,13 +75,16 @@
 						<h3>Upload Memo</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
 
-						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 							{% csrf_token %}
 							<div class="modalform__group">
 								<label for="memo_no">Memo No:</label>
@@ -128,5 +171,42 @@
 			format: "yyyy-mm-dd",
 		});
 	});
+
+	function validateForm() {
+		const fields = [
+			document.getElementById("memo_no"),
+			document.getElementById("memo_subject"),
+			document.getElementById("memo_content"),
+			document.getElementById("memo_to"),
+			document.getElementById("memo_to_pos"),
+			document.getElementById("memo_thru"),
+			document.getElementById("memo_thru_pos"),
+			document.getElementById("memo_from"),
+			document.getElementById("memo_from_pos"),
+			document.getElementById("memo_recomm_by"),
+			document.getElementById("memo_approved_by"),
+			document.getElementById("id_memo_date"),
+		];
+		let isValid = true;
+
+		fields.forEach(field => {
+			if (!field.value.trim()) {
+				isValid = false;
+				field.style.borderColor = "red"; // Highlight empty fields
+			} else {
+				field.style.borderColor = ""; // Reset border color
+			}
+		});
+
+		// Check if memo date is a valid date
+		const memoDate = document.getElementById("id_memo_date").value;
+		if (isNaN(Date.parse(memoDate))) {
+			isValid = false;
+			alert("Memo Date must be a valid date.");
+		}
+
+		return isValid; // Allow form submission if valid
+	}
 </script>
-{% endblock js %} {% endblock content %}
+{% endblock js %}
+{% endblock content %}

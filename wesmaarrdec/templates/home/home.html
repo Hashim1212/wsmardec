@@ -7,6 +7,7 @@
 <!-- Load Swiper CSS -->
 {% block css %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 {% endblock css %}
 
 <!-- Main Content -->
@@ -21,98 +22,153 @@
 					<h2>MOA/U</h2>
 					<h3>{{no_moa}}</h3>
 				</div>
-				
+
 				<div class="box bg-success" id="card2">
 					<h2>EVENT</h2>
 					<h3>{{no_events}}</h3>
 				</div>
-	
+
 				<div class="box bg-warning" id="card3">
 					<h2>MEMO</h2>
 					<h3>{{no_memos}}</h3>
 				</div>
-	
+
 				<div class="box bg-info" id="card4">
 					<h2>LETTER</h2>
 					<h3>{{no_letters}}</h3>
 				</div>
-				
+
 				<div class="box bg-danger" id="card5">
 					<h2>S.O</h2>
 					<h3>{{no_orders}}</h3>
 				</div>
 			</div>
 		</div>
-		
-		<div class="card shadow mb-4 mt-5">
-			<div class="dashboard-header card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<h4 class="font-weight-bold archives">All Documents</h4>
-				<a href="{% url 'add-moa' %}" class="add-docs d-none d-sm-inline-block btn btn-sm shadow-sm"> Upload Document </a>
-			</div>
-			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table datatable" width="100%" cellspacing="0">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Type/Venue</th>
-								<th>Date Created</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for moa in moas|slice:":3" %}
-								<tr>
-									<td>{{moa.moau_no}}</td>
-									<td>{{moa.moau_title}}</td>
-									<td>{{moa.moau_objective|truncatechars:40}}</td>
-									<td>{{moa.moau_type}}</td>
-									<td>{{moa.created_at}}</td>
-								</tr>
-							{% endfor %}
-							{% for event in events|slice:":3" %}
-								<tr>
-									<td>{{event.event_id}}</td>
-									<td>{{event.event_name}}</td>
-									<td>{{event.event_agenda|truncatechars:40}}</td>
-									<td>{{event.event_venue}}</td>
-									<td>{{event.created_at}}</td>
-								</tr>
-    						{% endfor %}
-							{% for memos in memos|slice:":3" %}
-								<tr>
-									<td>{{memos.memo_no}}</td>
-									<td>{{memos.memo_date}}</td>
-									<td>{{memos.memo_subject|truncatechars:40}}</td>
-									<td>{{memos.memo_recomm_by}}</td>
-									<td>{{memos.created_at}}</td>
-								</tr>
-    						{% endfor %}
-							{% for let in letters|slice:":3" %}
-								<tr>
-									<td>{{let.letter_no}}</td>
-									<td>{{let.letter_subject}}</td>
-									<td>{{let.letter_recom_approval|truncatechars:40}}</td>
-									<td>{{let.letter_approved_by}}</td>
-									<td>{{let.created_at}}</td>
-								</tr>
-    						{% endfor %}
-							{% for ords in orders|slice:":3" %}
-								<tr>
-									<td>{{ords.so_no}}</td>
-									<td>{{ords.so_subject}}</td>
-									<td>{{ords.so_content|truncatechars:40}}</td>
-									<td>{{ords.so_signedby}}</td>
-									<td>{{ords.created_at}}</td>
-								</tr>
-    						{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
+
+<div class="card shadow mb-4 mt-5">
+    <div class="dashboard-header card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="font-weight-bold archives">All Documents</h4>
+        <div class="custom-dropdown">
+            <button class="add-docs btn btn-sm shadow-sm" onclick="toggleDropdown()">Upload Document</button>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="{% url 'add-moa' %}" class="dropdown-item">Upload MOA</a>
+                <a href="{% url 'add-event' %}" class="dropdown-item">Upload Event</a>
+                <a href="{% url 'add-memo' %}" class="dropdown-item">Upload Memo</a>
+                <a href="{% url 'add-letter' %}" class="dropdown-item">Upload Letter</a>
+                <a href="{% url 'add-order' %}" class="dropdown-item">Upload Special Order</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table datatable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Type/Venue</th>
+                        <th>Date Created</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for moa in moas|slice:":3" %}
+                        <tr>
+                            <td>{{moa.moau_no}}</td>
+                            <td>{{moa.moau_title}}</td>
+                            <td>{{moa.moau_objective|truncatechars:40}}</td>
+                            <td>{{moa.moau_type}}</td>
+                            <td>{{moa.created_at}}</td>
+                        </tr>
+                    {% endfor %}
+                    {% for event in events|slice:":3" %}
+                        <tr>
+                            <td>{{event.event_id}}</td>
+                            <td>{{event.event_name}}</td>
+                            <td>{{event.event_agenda|truncatechars:40}}</td>
+                            <td>{{event.event_venue}}</td>
+                            <td>{{event.created_at}}</td>
+                        </tr>
+                    {% endfor %}
+                    {% for memos in memos|slice:":3" %}
+                        <tr>
+                            <td>{{memos.memo_no}}</td>
+                            <td>{{memos.memo_date}}</td>
+                            <td>{{memos.memo_subject|truncatechars:40}}</td>
+                            <td>{{memos.memo_recomm_by}}</td>
+                            <td>{{memos.created_at}}</td>
+                        </tr>
+                    {% endfor %}
+                    {% for let in letters|slice:":3" %}
+                        <tr>
+                            <td>{{let.letter_no}}</td>
+                            <td>{{let.letter_subject}}</td>
+                            <td>{{let.letter_recom_approval|truncatechars:40}}</td>
+                            <td>{{let.letter_approved_by}}</td>
+                            <td>{{let.created_at}}</td>
+                        </tr>
+                    {% endfor %}
+                    {% for ords in orders|slice:":3" %}
+                        <tr>
+                            <td>{{ords.so_no}}</td>
+                            <td>{{ords.so_subject}}</td>
+                            <td>{{ords.so_content|truncatechars:40}}</td>
+                            <td>{{ords.so_signedby}}</td>
+                            <td>{{ords.created_at}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        z-index: 1000;
+        min-width: 200px;
+    }
+    .dropdown-item {
+        padding: 10px;
+        text-decoration: none;
+        display: block;
+        color: #333;
+    }
+    .dropdown-item:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+<script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById('dropdownMenu');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown if clicked outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.add-docs')) {
+            const dropdowns = document.getElementsByClassName('dropdown-menu');
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+
 
 		<!-- <div class="row">
 			<div class="col-xl-9 col-lg-7">
@@ -628,4 +684,5 @@
 <script src="{% static 'js/simple-datatables.js' %}"></script>
 <script src="{% static 'js/tinymce.min.js' %}"></script>
 <script src="{% static 'js/datatables.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock js %} {% endblock content %}

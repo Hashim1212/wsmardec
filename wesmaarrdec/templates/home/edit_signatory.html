@@ -7,6 +7,16 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+    <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
 	<div class="formwrapper ep_wrap">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -25,24 +35,27 @@
 						<h3>Edit Signatory</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
-						<form action="" class="modalform" method="POST" enctype="multipart/form-party">
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
 							{% csrf_token %}
 							<div class="modalform__group">
 								<label for="signed_by">Signed By:</label>
-								<input type="text" id="signed_by" name="signed_by" value="{{signatory.signed_by}}" required />
+								<input type="text" id="signed_by" name="signed_by" value="{{signatory.signed_by}}" required placeholder="Enter Signatory Name" />
 							</div>
 							<div class="modalform__group">
 								<label for="position">Position:</label>
-								<input type="text" id="position" name="position" value="{{signatory.position}}" required />
+								<input type="text" id="position" name="position" value="{{signatory.position}}" required placeholder="Enter Position" />
 							</div>
 							<div class="modalform__group">
 								<label for="agency">Agency:</label>
-								<input type="text" id="agency" name="agency" value="{{signatory.agency}}" required />
+								<input type="text" id="agency" name="agency" value="{{signatory.agency}}" required placeholder="Enter Agency" />
 							</div>
 							<div class="modalform__action">
 								<a class="modalbtn modalbtn--dark" href="{% url 'moa' signatory.moau.moau_no %}">Cancel</a>

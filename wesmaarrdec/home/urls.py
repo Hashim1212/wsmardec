@@ -1,10 +1,15 @@
 from django.urls import path
 from . import views
+from .views import timezone_view
+from django.contrib import admin
+
+
 
 urlpatterns = [
-    path('', views.home, name="home"),
+    path('admin/',admin.site.urls),
+    path('', views.user_login, name="login"),
     path('about/', views.about_us, name="about"),
-    
+    path('home/', views.home, name="home"),
     path('events/', views.events, name="events"),
     path('event/<str:pk>/', views.event, name="event"),
     path('add-event/', views.add_event, name="add-event"),
@@ -44,10 +49,10 @@ urlpatterns = [
     path('edit-signatory/<str:pk>/', views.edit_signatory, name="edit-signatory"),
     path('delete-signatory/<str:pk>/', views.delete_signatory, name="delete-signatory"),
 
-    path('login/', views.user_login, name="login"),
     path('logout/', views.user_logout, name="logout"),
 
-    path('profile/', views.profile, name="profile"),
-    path('edit-profile/', views.edit_profile, name="edit-profile"),
+   path('profile/', views.profile, name="profile"),
+   path('edit-profile/', views.edit_profile, name="edit-profile"),
     path('edit-info/', views.edit_info, name="edit-info"),
+    path('timezone/', timezone_view, name='timezone_view'),
 ]

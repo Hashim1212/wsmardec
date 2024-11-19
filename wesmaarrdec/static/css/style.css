@@ -236,17 +236,82 @@ svg {
 	color: var(--clr-green-500);
 }
 
+/* Responsive Adjustments */
+
+/* Small screens (up to 600px) */
+@media (max-width: 600px) {
+	.header_logo > img {
+		height: 2rem;
+		width: 2rem;
+	}
+	.header_logo > h1 {
+		font-size: 1.5rem;
+	}
+}
+
+/* Medium screens (600px to 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+	.header_logo > img {
+		height: 2.4rem;
+		width: 2.4rem;
+	}
+	.header_logo > h1 {
+		font-size: 1.7rem;
+	}
+}
+
+/* Large screens (1024px and above) */
+@media (min-width: 1024px) {
+	.header_logo > img {
+		height: 2.7rem;
+		width: 2.7rem;
+	}
+	.header_logo > h1 {
+		font-size: 1.9rem;
+	}
+}
+
+
 .nav-toggle-btn {
 	width: 50px;
 	height: 50px;
 	margin-right: 2.85rem;
 	background-color: var(--clr-white);
 	border-radius: 15%;
-	/* border: none; */
 	display: grid;
 	place-content: center;
 	gap: 8px;
 	transition: 0.25s ease;
+}
+
+/* Small screens (up to 600px) */
+@media (max-width: 600px) {
+	.nav-toggle-btn {
+		width: 40px;
+		height: 40px;
+		margin-right: 1.5rem; /* Reduce margin on smaller screens */
+		gap: 6px;
+	}
+}
+
+/* Medium screens (600px to 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+	.nav-toggle-btn {
+		width: 45px;
+		height: 45px;
+		margin-right: 2rem; /* Moderate spacing on medium screens */
+		gap: 7px;
+	}
+}
+
+/* Large screens (1024px and above) */
+@media (min-width: 1024px) {
+	.nav-toggle-btn {
+		width: 50px;
+		height: 50px;
+		margin-right: 2.85rem; /* Original size for larger screens */
+		gap: 8px;
+	}
 }
 
 .nav-toggle-btn:is(:hover, :focus-visible) {
@@ -294,7 +359,7 @@ svg {
 .navbar ul li {
 	padding-block: 10px;
 	text-transform: uppercase;
-	
+
 }
 
 .navbar ul li:first-child {
@@ -382,6 +447,24 @@ svg {
 .overlay.active {
 	display: block;
 }
+
+	.navbar {
+		top: 0;
+		display: grid;
+		place-content: center;
+		/* transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265); */
+	}
+
+	.nav-toggle-btn {
+		position: relative;
+		z-index: 2;
+	}
+
+	.overlay {
+		top: 0;
+	}
+}
+
 
 /* Swiper */
 .swiper {
@@ -538,7 +621,7 @@ table {
 	/* line-height: 1.6;
 	font-weight: 400; */
 	color: #b2bdbd;
-	min-height: 100vh;
+	min-height: 150vh;
 }
 
 .layout__body {
@@ -1436,7 +1519,7 @@ table {
 		max-width: 150rem;
 		width: 90%;
 		margin: auto;
-	}  
+	}
 
 	/* Header */
 	.navbar {
@@ -1454,7 +1537,7 @@ table {
 	.overlay {
 		top: 0;
 	}
-}
+
 
 
 .wrapper{

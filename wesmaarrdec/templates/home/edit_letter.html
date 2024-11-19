@@ -17,6 +17,43 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+     <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
 	<div class="formwrapper letter_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -36,59 +73,59 @@
 					</div>
 					<div class="layout__body">
 						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
 						{% else %}
 						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
 						{% endif %} {% endfor %} {% endif %}
 
 						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
-							{% csrf_token %}
-							<div class="modalform__group">
-								<label for="letter_no">Letter No:</label>
-								<input type="text" id="letter_no" name="letter_no" value="{{letter.letter_no}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_file">Letter File:</label>
-								{{form.letter_file}}
-							</div>
-							<div class="modalform__group">
-								<label for="letter_subject">Subject:</label>
-								<input type="text" id="letter_subject" name="letter_subject" value="{{letter.letter_subject}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_to">Letter To:</label>
-								<input type="text" id="letter_to" name="letter_to" value="{{letter.letter_to}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_from">Letter From:</label>
-								<input type="text" id="letter_from" name="letter_from" value="{{letter.letter_from}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_received_by">Received By:</label>
-								<input type="text" id="letter_received_by" name="letter_received_by" value="{{letter.letter_received_by}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_received_date">Received Date:</label>
-								{{form.letter_received_date}}
-							</div>
-							<div class="modalform__group">
-								<label for="letter_noted_by">Noted By:</label>
-								<input type="text" id="letter_noted_by" name="letter_noted_by" value="{{letter.letter_noted_by}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_recom_approval">Recommend Approval:</label>
-								<input type="text" id="letter_recom_approval" name="letter_recom_approval" value="{{letter.letter_recom_approval}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="letter_approved_by">Approved By:</label>
-								<input type="text" id="letter_approved_by" name="letter_approved_by" value="{{letter.letter_approved_by}}" />
-							</div>
+    {% csrf_token %}
+    <div class="modalform__group">
+        <label for="letter_no">Letter No:</label>
+        <input type="text" id="letter_no" name="letter_no" value="{{letter.letter_no}}" required placeholder="Enter Letter No" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_file">Letter File:</label>
+        {{form.letter_file}}
+    </div>
+    <div class="modalform__group">
+        <label for="letter_subject">Subject:</label>
+        <input type="text" id="letter_subject" name="letter_subject" value="{{letter.letter_subject}}" required placeholder="Enter Subject" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_to">Letter To:</label>
+        <input type="text" id="letter_to" name="letter_to" value="{{letter.letter_to}}" required placeholder="Enter Recipient's Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_from">Letter From:</label>
+        <input type="text" id="letter_from" name="letter_from" value="{{letter.letter_from}}" required placeholder="Enter Sender's Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_received_by">Received By:</label>
+        <input type="text" id="letter_received_by" name="letter_received_by" value="{{letter.letter_received_by}}" required placeholder="Enter Receiver's Name" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_received_date">Received Date:</label>
+        <input type="text" id="id_letter_received_date" name="letter_received_date" value="{{letter.letter_received_date}}" required placeholder="YYYY-MM-DD" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_noted_by">Noted By:</label>
+        <input type="text" id="letter_noted_by" name="letter_noted_by" value="{{letter.letter_noted_by}}" required placeholder="Enter Noted By" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_recom_approval">Recommend Approval:</label>
+        <input type="text" id="letter_recom_approval" name="letter_recom_approval" value="{{letter.letter_recom_approval}}" required placeholder="Enter Recommendation" />
+    </div>
+    <div class="modalform__group">
+        <label for="letter_approved_by">Approved By:</label>
+        <input type="text" id="letter_approved_by" name="letter_approved_by" value="{{letter.letter_approved_by}}" required placeholder="Enter Approver's Name" />
+    </div>
 
-							<div class="modalform__action">
-								<a class="modalbtn modalbtn--dark" href="{% url 'comm-letters' %}">Cancel</a>
-								<button class="modalbtn modalbtn--main" type="submit">Update Letter</button>
-							</div>
-						</form>
+    <div class="modalform__action">
+        <a class="modalbtn modalbtn--dark" href="{% url 'comm-letters' %}">Cancel</a>
+        <button class="modalbtn modalbtn--main" type="submit">Update Letter</button>
+    </div>
+</form>
+
 					</div>
 				</div>
 			</div>

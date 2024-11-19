@@ -24,7 +24,7 @@
 					<div class="form__top">
 						<div class="room__topleft">
 							<a href="{% url 'moas' %}">
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="32" viewBox="0 0 32 32">
 									<title>arrow-left</title>
 									<path
 										d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"
@@ -35,16 +35,20 @@
 						<h3>Upload MOA</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
 
-						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 							{% csrf_token %}
 							<div class="modalform__group">
-								<label for="moau_no">Moau No:</label>
+								<label for="moau_no">Moa/Mou No:</label>
 								<input type="text" id="moau_no" name="moau_no" value="{{data.moau_no}}" />
 							</div>
 							<div class="modalform__group">
@@ -56,7 +60,7 @@
 								{{form.moau_type}}
 							</div>
 							<div class="modalform__group">
-								<label for="moau_title">Moau Title:</label>
+								<label for="moau_title">Moa/Mou Title:</label>
 								<input type="text" id="moau_title" name="moau_title" value="{{data.moau_title}}" />
 							</div>
 							<div class="modalform__group">
@@ -77,7 +81,7 @@
 							</div>
 							<div class="modalform__action">
 								<a class="modalbtn modalbtn--dark" href="{% url 'moas' %}">Cancel</a>
-								<button class="modalbtn modalbtn--main" type="submit">Upload MOA</button>
+								<button class="modalbtn modalbtn--main" type="submit">Upload MOA/MOU</button>
 							</div>
 						</form>
 					</div>
@@ -113,5 +117,43 @@
 			format: "yyyy-mm-dd",
 		});
 	});
+
+	function validateForm() {
+		const fields = [
+			document.getElementById("moau_no"),
+			document.getElementById("moau_title"),
+			document.getElementById("moau_objective"),
+			document.getElementById("moau_notarized_by"),
+			document.getElementById("id_moau_approve_date"),
+			document.getElementById("id_moau_notarized_date")
+		];
+		let isValid = true;
+
+		fields.forEach(field => {
+			if (!field.value.trim()) {
+				isValid = false;
+				field.style.borderColor = "red"; // Highlight empty fields
+			} else {
+				field.style.borderColor = ""; // Reset border color
+			}
+		});
+
+		// Check if date inputs are numeric (if needed, modify according to your validation criteria)
+		const approveDate = document.getElementById("id_moau_approve_date").value;
+		const notarizedDate = document.getElementById("id_moau_notarized_date").value;
+
+		if (isNaN(Date.parse(approveDate))) {
+			isValid = false;
+			alert("Approve Date must be a valid date.");
+		}
+
+		if (isNaN(Date.parse(notarizedDate))) {
+			isValid = false;
+			alert("Notarized Date must be a valid date.");
+		}
+
+		return isValid; // Allow form submission if valid
+	}
 </script>
-{% endblock js %} {% endblock content %}
+{% endblock js %}
+{% endblock content %}

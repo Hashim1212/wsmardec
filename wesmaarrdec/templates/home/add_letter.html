@@ -17,6 +17,43 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>    <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
+            <br>
+        <br>
 	<div class="formwrapper letter_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -35,13 +72,16 @@
 						<h3>Upload Letter</h3>
 					</div>
 					<div class="layout__body">
-						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
-						{% else %}
-						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
-						{% endif %} {% endfor %} {% endif %}
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == 'success' %}
+								{% else %}
+								<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
 
-						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
+						<form action="" class="modalform" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 							{% csrf_token %}
 							<div class="modalform__group">
 								<label for="letter_no">Letter No:</label>
@@ -116,5 +156,39 @@
 			format: "yyyy-mm-dd",
 		});
 	});
+
+	function validateForm() {
+		const fields = [
+			document.getElementById("letter_no"),
+			document.getElementById("letter_subject"),
+			document.getElementById("letter_to"),
+			document.getElementById("letter_from"),
+			document.getElementById("letter_received_by"),
+			document.getElementById("letter_noted_by"),
+			document.getElementById("letter_recom_approval"),
+			document.getElementById("letter_approved_by"),
+			document.getElementById("id_letter_received_date"),
+		];
+		let isValid = true;
+
+		fields.forEach(field => {
+			if (!field.value.trim()) {
+				isValid = false;
+				field.style.borderColor = "red"; // Highlight empty fields
+			} else {
+				field.style.borderColor = ""; // Reset border color
+			}
+		});
+
+		// Check if received date is a valid date
+		const receivedDate = document.getElementById("id_letter_received_date").value;
+		if (isNaN(Date.parse(receivedDate))) {
+			isValid = false;
+			alert("Received Date must be a valid date.");
+		}
+
+		return isValid; // Allow form submission if valid
+	}
 </script>
-{% endblock js %} {% endblock content %}
+{% endblock js %}
+{% endblock content %}

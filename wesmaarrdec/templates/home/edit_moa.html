@@ -17,6 +17,7 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+
 	<div class="formwrapper moa_formwrapper">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -36,50 +37,50 @@
 					</div>
 					<div class="layout__body">
 						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
 						{% else %}
 						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
 						{% endif %} {% endfor %} {% endif %}
 
 						<form action="" class="modalform" method="POST" enctype="multipart/form-data">
-							{% csrf_token %}
-							<div class="modalform__group">
-								<label for="moau_no">Moau No:</label>
-								<input type="text" id="moau_no" name="moau_no" value="{{moa.moau_no}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="moau_file">File:</label>
-								{{form.moau_file}}
-							</div>
-							<div class="modalform__group">
-								<label for="moau_type">Type:</label>
-								{{form.moau_type}}
-							</div>
-							<div class="modalform__group">
-								<label for="moau_title">Moa/u Title:</label>
-								<input type="text" id="moau_title" name="moau_title" value="{{moa.moau_title}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="moau_objective">Objective:</label>
-								<textarea name="moau_objective" cols="40" rows="10" id="moau_objective">{{moa.moau_objective}}</textarea>
-							</div>
-							<div class="modalform__group">
-								<label for="moau_approve_date">Approve Date:</label>
-								{{form.moau_approve_date}}
-							</div>
-							<div class="modalform__group">
-								<label for="moau_notarized_by">Notarized By:</label>
-								<input type="text" id="moau_notarized_by" name="moau_notarized_by" value="{{moa.moau_notarized_by}}" />
-							</div>
-							<div class="modalform__group">
-								<label for="moau_notarized_date">Notarized Date:</label>
-								{{form.moau_notarized_date}}
-							</div>
-							<div class="modalform__action">
-								<a class="modalbtn modalbtn--dark" href="{% url 'moa' moa.moau_no %}">Cancel</a>
-								<button class="modalbtn modalbtn--main" type="submit">Update MOA</button>
-							</div>
-						</form>
+    {% csrf_token %}
+    <div class="modalform__group">
+        <label for="moau_no">Moau No:</label>
+        <input type="text" id="moau_no" name="moau_no" value="{{moa.moau_no}}" required placeholder="Enter Moau No" />
+    </div>
+    <div class="modalform__group">
+        <label for="moau_file">File:</label>
+        {{form.moau_file}}
+    </div>
+    <div class="modalform__group">
+        <label for="moau_type">Type:</label>
+        {{form.moau_type}}
+    </div>
+    <div class="modalform__group">
+        <label for="moau_title">Moa/u Title:</label>
+        <input type="text" id="moau_title" name="moau_title" value="{{moa.moau_title}}" required placeholder="Enter Moa/u Title" />
+    </div>
+    <div class="modalform__group">
+        <label for="moau_objective">Objective:</label>
+        <textarea name="moau_objective" cols="40" rows="10" id="moau_objective" required placeholder="Enter Objective">{{moa.moau_objective}}</textarea>
+    </div>
+    <div class="modalform__group">
+        <label for="moau_approve_date">Approve Date:</label>
+        <input type="text" id="id_moau_approve_date" name="moau_approve_date" value="{{moa.moau_approve_date}}" required placeholder="YYYY-MM-DD" />
+    </div>
+    <div class="modalform__group">
+        <label for="moau_notarized_by">Notarized By:</label>
+        <input type="text" id="moau_notarized_by" name="moau_notarized_by" value="{{moa.moau_notarized_by}}" required placeholder="Enter Notarized By" />
+    </div>
+    <div class="modalform__group">
+        <label for="moau_notarized_date">Notarized Date:</label>
+        <input type="text" id="id_moau_notarized_date" name="moau_notarized_date" value="{{moa.moau_notarized_date}}" required placeholder="YYYY-MM-DD" />
+    </div>
+    <div class="modalform__action">
+        <a class="modalbtn modalbtn--dark" href="{% url 'moa' moa.moau_no %}">Cancel</a>
+        <button class="modalbtn modalbtn--main" type="submit">Update MOA</button>
+    </div>
+</form>
+
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,16 @@
 <!-- Main Content -->
 {% block content %}
 <main>
+        <br>
+        <br>
+            <br>
+                <br>
+                    <br>
+                        <br>
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
 	<div class="formwrapper ep_wrap">
 		<div class="create-room layout">
 			<div class="formcontainer">
@@ -26,7 +36,6 @@
 					</div>
 					<div class="layout__body">
 						{% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-						<p style="text-align: center; justify-content: center; color: green">{{ message }}</p>
 						{% else %}
 						<p style="text-align: center; justify-content: center; color: red">{{ message }}</p>
 						{% endif %} {% endfor %} {% endif %}
@@ -44,6 +53,7 @@
 								<label for="agency">Agency:</label>
 								<input type="text" id="agency" name="agency" value="{{data.agency}}" required />
 							</div>
+							<input type="hidden" name="created_at" value="{{philippines_tz}}">
 							<div class="modalform__action">
 								<a class="modalbtn modalbtn--dark" href="{% url 'moa' moa.moau_no %}">Cancel</a>
 								<button class="modalbtn modalbtn--main" type="submit">Add Signatory</button>
